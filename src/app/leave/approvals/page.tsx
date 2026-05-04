@@ -47,7 +47,7 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
             {rows.map((r) => (
               <tr key={r.id}>
                 <td>
-                  <strong>{r.profiles?.full_name || r.profiles?.email || "—"}</strong>
+                  <strong>{r.profiles?.full_name || r.profiles?.email || "-"}</strong>
                   <br />
                   <small>{r.profiles?.department || "No department"}</small>
                 </td>
@@ -56,21 +56,21 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
                   <br />
                   <small>{r.reason || "No reason given"}</small>
                 </td>
-                <td>{r.start_date} → {r.end_date}</td>
+                <td>{r.start_date} to {r.end_date}</td>
                 <td>{r.number_of_days}</td>
                 <td><span className="badge pending">{prettyStatus(r.status)}</span></td>
                 <td>
                   <form className="actions" action={updateLeaveStatus}>
                     <input type="hidden" name="request_id" value={r.id} />
                     <input name="comment" placeholder="Comment (optional)" style={{ width: 160, fontSize: 13 }} />
-                    <button name="action" value="approve" style={{ padding: "7px 14px", fontSize: 13 }}>✓ Approve</button>
-                    <button className="secondary" name="action" value="reject" style={{ padding: "7px 14px", fontSize: 13 }}>✕ Reject</button>
+                    <button name="action" value="approve" style={{ padding: "7px 14px", fontSize: 13 }}>Approve</button>
+                    <button className="secondary" name="action" value="reject" style={{ padding: "7px 14px", fontSize: 13 }}>Reject</button>
                   </form>
                 </td>
               </tr>
             ))}
             {rows.length === 0 && (
-              <tr><td colSpan={6} style={{ textAlign: "center", color: "var(--muted)", padding: 32 }}>🎉 No pending leave requests right now.</td></tr>
+              <tr><td colSpan={6} style={{ textAlign: "center", color: "var(--muted)", padding: 32 }}>No pending requests.</td></tr>
             )}
           </tbody>
         </table>
