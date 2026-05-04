@@ -5,17 +5,6 @@ import { getCurrentProfile } from "@/lib/auth";
 import { prettyStatus } from "@/lib/leave";
 import { updateLeaveStatus } from "@/app/actions";
 
-type ApprovalRow = {
-  id: string;
-  start_date: string;
-  end_date: string;
-  number_of_days: number;
-  status: string;
-  reason: string | null;
-  leave_types: { name: string } | null;
-  profiles: { full_name: string | null; email: string | null; department: string | null } | null;
-};
-
 export default async function Approvals({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;
   const profile = await getCurrentProfile();
@@ -30,7 +19,8 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
     .select("id, start_date, end_date, number_of_days, status, reason, leave_types(name), profiles(full_name, email, department)")
     .in("status", statuses)
     .order("created_at", { ascending: false });
-const rows = (requests ?? []) as unknown as ApprovalRow[];
+
+  const rows = (requests ?? []) as any[];
 
   return (
     <Shell>
