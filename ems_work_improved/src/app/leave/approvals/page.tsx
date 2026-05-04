@@ -12,8 +12,8 @@ type ApprovalRow = {
   number_of_days: number;
   status: string;
   reason: string | null;
-  leave_types: { name: string } | null;
-  profiles: { full_name: string | null; email: string | null; department: string | null } | null;
+  leave_types: { name: string }[] | { name: string } | null;
+  profiles: { full_name: string | null; email: string | null; department: string | null }[] | { full_name: string | null; email: string | null; department: string | null } | null;
 };
 
 export default async function Approvals({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
