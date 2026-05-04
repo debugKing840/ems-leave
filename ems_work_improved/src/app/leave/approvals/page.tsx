@@ -31,7 +31,7 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
     .in("status", statuses)
     .order("created_at", { ascending: false });
 
-  const rows = (requests ?? []) as ApprovalRow[];
+  const rows = (requests ?? []) as any[];
 
   return (
     <Shell>
