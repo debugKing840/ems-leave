@@ -30,8 +30,7 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
     .select("id, start_date, end_date, number_of_days, status, reason, leave_types(name), profiles(full_name, email, department)")
     .in("status", statuses)
     .order("created_at", { ascending: false });
-
-  const rows = (requests ?? []) as ApprovalRow[];
+const rows = (requests ?? []) as unknown as ApprovalRow[];;
 
   return (
     <Shell>
