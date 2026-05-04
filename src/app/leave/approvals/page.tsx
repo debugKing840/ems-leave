@@ -77,4 +77,4 @@ export default async function Approvals({ searchParams }: { searchParams: Promis
       </div>
     </Shell>
   );
-}
+}  
